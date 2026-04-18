@@ -1,5 +1,13 @@
 import unittest
 from unittest import TestCase
+import os
+
+os.environ.setdefault("MPLBACKEND", "Agg")
+
+import matplotlib
+matplotlib.use("Agg", force=True)
+import matplotlib.pyplot as plt
+
 import appvib
 import math
 import numpy as np
@@ -11,8 +19,19 @@ from pathlib import Path
 
 class TestClSig(TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        cls._orig_show = plt.show
+        plt.ioff()
+        plt.show = lambda *args, **kwargs: None
+
+    @classmethod
+    def tearDownClass(cls):
+        plt.show = cls._orig_show
+        plt.close('all')
+
     def setUp(self):
-        test_data_dir = Path(__file__).resolve().parents[1] / 'data'
+        test_data_dir = Path(__file__).resolve().parent / 'data'
 
         # Define the initial values for the test
         self.np_test = np.array([0.1, 1.0, 10.0])
@@ -262,6 +281,9 @@ class TestClSig(TestCase):
                                                 tzinfo=timezone(timedelta(days=-1, seconds=57600)))
         self.dt_timestamp_close_time_mark = datetime(2021, 12, 9, 5, 37, 11, 203000,
                                                      tzinfo=timezone(timedelta(days=-1, seconds=57600)))
+
+    def tearDown(self):
+        plt.close('all')
 
     def test_est_signal_features(self):
 

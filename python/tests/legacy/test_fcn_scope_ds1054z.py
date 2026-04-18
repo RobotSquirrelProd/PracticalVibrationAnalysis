@@ -1,3 +1,9 @@
+import pytest
+
+pytest.importorskip(
+    "ds1054z",
+    reason="Optional dependency for hardware scope integration tests is not installed.",
+)
 from ds1054z import DS1054Z
 import unittest
 import fcn_scope_ds1054z as scp
