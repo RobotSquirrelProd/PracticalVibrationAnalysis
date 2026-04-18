@@ -1052,7 +1052,7 @@ class ClSigReal(ClSig, ClSignalFeaturesEst):
         self.__b_is_stale_eventtimes = True
 
         # Attributes related to rpm calculation
-        self.__d_events_per_rev = np.NaN
+        self.__d_events_per_rev = np.nan
         self.__np_d_rpm = np.zeros_like(np_d_sig)
         self.__b_is_stale_rpm = True
 

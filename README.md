@@ -10,6 +10,17 @@ As of this writing, the package is a work-in-progress and heavily in development
 
 If you do scare up the courage to install this and try commands, I would love your feedback, please log issues and concerns here in the GitHub repository.
 
+## Repository layout
+
+- `python/vibration_analysis/`: Maintained Python package source.
+- `python/tests/`: Primary automated test suite.
+- `python/tests/legacy/`: Legacy tests that exercise older modules and hardware integrations.
+- `python/tests/data/`: Test fixture data files used by test modules.
+- `notebooks/`: Exploratory notebooks and test harness notebooks.
+- `scripts/`: Local helper scripts and launchers.
+- `docs/architecture/`: Architecture and UML artifacts.
+- `docs/figures/`: Generated figures and plot exports.
+
 ## Installation
 
 In this early stage I clone the repository to a local folder and then:
@@ -38,7 +49,7 @@ This section has some examples to get you startedd.
 
 A timebase plot shows an amplitude versus time waveform in a rectangular grid for one data series. This plot format can be thought of as a high-resolution trend with 1000s of points over a few hundred milliseconds. 
 
-The repo includes a [hello world](https://github.com/RobotSquirrelProd/AppliedVibrationAnalysis/blob/main/AppliedVibrationAnalysis%20HelloWorld.ipynb) with more examples. But to get started follow these 3 steps to get the plot up:
+The repo includes a [hello world notebook](notebooks/AppliedVibrationAnalysis%20HelloWorld.ipynb) with more examples. But to get started follow these 3 steps to get the plot up:
 
 -   Load the libraries:
 

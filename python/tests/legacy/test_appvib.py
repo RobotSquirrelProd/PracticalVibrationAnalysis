@@ -6,11 +6,14 @@ import numpy as np
 import time
 import pandas as pd
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 
 
 class TestClSig(TestCase):
 
     def setUp(self):
+        test_data_dir = Path(__file__).resolve().parents[1] / 'data'
+
         # Define the initial values for the test
         self.np_test = np.array([0.1, 1.0, 10.0])
         self.np_test_ch2 = np.array([2.1, 3.0, 12.0])
@@ -92,7 +95,7 @@ class TestClSig(TestCase):
         self.str_machine_name = '7"  x 10" Mini Lathe | item number 93212 | serial no. 01504'
 
         # Test data set 000 : This one caused the nx_est to fail
-        self.str_filename_000 = 'test_appvib_data_000.csv'
+        self.str_filename_000 = str(test_data_dir / 'test_appvib_data_000.csv')
         self.df_test_000 = pd.read_csv(self.str_filename_000, header=None, skiprows=1,
                                        names=['Ch1', 'Ch2', 'FS'])
         self.np_d_test_data_000_Ch1 = self.df_test_000.Ch1
@@ -102,7 +105,7 @@ class TestClSig(TestCase):
         self.d_threshold_test_000 = 0.125
 
         # Test data set 001 : This one caused the nx_est to fail, no vectors
-        self.str_filename_001 = 'test_appvib_data_001.csv'
+        self.str_filename_001 = str(test_data_dir / 'test_appvib_data_001.csv')
         self.df_test_001 = pd.read_csv(self.str_filename_001, header=None, skiprows=1,
                                        names=['Ch1', 'Ch2', 'FS'])
         self.np_d_test_data_001_Ch1 = self.df_test_001.Ch1
