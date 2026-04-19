@@ -11,6 +11,48 @@ from typing import Any
 import numpy as np
 
 
+def _build_mode_shape_figure(
+    station_positions: np.ndarray,
+    mode_shapes: np.ndarray,
+    frequencies_cpm: np.ndarray,
+    str_plot_file: str,
+):
+    """Create a simple Matplotlib summary figure for mode shapes."""
+
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    from matplotlib.figure import Figure
+
+    fig = Figure(figsize=(9, 7), constrained_layout=True)
+    FigureCanvasAgg(fig)
+    ax_modes, ax_schematic = fig.subplots(2, 1, gridspec_kw={"height_ratios": [3, 1]})
+
+    if mode_shapes.size > 0:
+        for idx_mode in range(mode_shapes.shape[1]):
+            label = f"Mode {idx_mode + 1} ({frequencies_cpm[idx_mode]:.3f} CPM)"
+            ax_modes.plot(station_positions, mode_shapes[:, idx_mode], marker="o", label=label)
+        ax_modes.legend()
+    else:
+        ax_modes.text(0.5, 0.5, "No non-degenerate modes to plot", ha="center", va="center")
+
+    ax_modes.set_title("Torsional Mode Shapes")
+    ax_modes.set_xlabel("Station Position")
+    ax_modes.set_ylabel("Normalized Twist")
+    ax_modes.grid(True, alpha=0.3)
+    ax_modes.axhline(0.0, color="black", linewidth=0.8, alpha=0.5)
+
+    ax_schematic.set_title("Rotor Schematic")
+    ax_schematic.plot(station_positions, np.zeros_like(station_positions), color="black", linewidth=1.0)
+    ax_schematic.scatter(station_positions, np.zeros_like(station_positions), s=80, color="tab:blue")
+    ax_schematic.set_xlabel("Station Position")
+    ax_schematic.set_yticks([])
+    ax_schematic.grid(True, axis="x", alpha=0.3)
+
+    if str_plot_file:
+        fig.savefig(str_plot_file)
+
+    return fig
+
+
 def _form_a(
     d_moip: np.ndarray,
     d_kt: np.ndarray,
@@ -150,12 +192,12 @@ def calc_free_free_tors_resp(
             "i_station_skip": int(i_station_skip),
             "plot_file": str_plot_file,
         }
-        h_mode_shapes = {
-            "name": "Mode Shape",
-            "station_positions": d_len_sum.copy(),
-            "mode_shapes": mat_eig_sorted.copy(),
-            "frequencies_cpm": d_ft_cpm.copy(),
-        }
+        h_mode_shapes = _build_mode_shape_figure(
+            d_len_sum.copy(),
+            mat_eig_sorted.copy(),
+            d_ft_cpm.copy(),
+            str_plot_file,
+        )
 
     # Lightweight state-space style payload matching MATLAB test intent.
     zero_n = np.zeros((n, n), dtype=float)

@@ -2,6 +2,8 @@
 
 import unittest
 
+from matplotlib.figure import Figure
+
 from vibration_analysis.torsional.calc_free_free_tors_resp import calc_free_free_tors_resp
 
 
@@ -35,6 +37,7 @@ class CalcFreeFreeTorsRespTests(unittest.TestCase):
 
         # Verify plot handles were returned
         self.assertIsNotNone(h)
+        self.assertIsInstance(h, Figure)
         self.assertIsNotNone(h_mass_elastic)
 
         # Verify natural frequencies

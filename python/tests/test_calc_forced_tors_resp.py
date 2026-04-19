@@ -2,6 +2,8 @@
 
 import unittest
 
+from matplotlib.figure import Figure
+
 from vibration_analysis.torsional.calc_forced_tors_resp import calc_forced_tors_resp
 
 
@@ -34,6 +36,7 @@ class CalcForcedTorsRespTests(unittest.TestCase):
 
         self.assertLess(abs(float(d_eigvec[0, 0]) + 1.0), self.ABS_TOL_MODE_SHAPE)
         self.assertIsNotNone(h)
+        self.assertIsInstance(h, Figure)
         self.assertIsNotNone(h_mass_elastic)
         self.assertAlmostEqual(float(omega_cpm[0]), omega_analytical_cpm1, delta=self.ABS_TOL_FREQ_3MASS_1)
         self.assertAlmostEqual(float(omega_cpm[1]), omega_analytical_cpm2, delta=self.ABS_TOL_FREQ_3MASS_2)
@@ -64,6 +67,7 @@ class CalcForcedTorsRespTests(unittest.TestCase):
 
         self.assertLess(abs(float(d_eigvec[0, 0]) + 1.0), self.ABS_TOL_MODE_SHAPE)
         self.assertIsNotNone(h)
+        self.assertIsInstance(h, Figure)
         self.assertIsNotNone(h_mass_elastic)
         self.assertAlmostEqual(float(omega_cpm[0]), omega_analytical_cpm1, delta=self.ABS_TOL_FREQ_2MASS_1)
         self.assertIsNotNone(ss_rotor)
@@ -98,6 +102,7 @@ class CalcForcedTorsRespTests(unittest.TestCase):
 
         self.assertLess(abs(float(d_eigvec[0, 0]) - 1.0), self.ABS_TOL_MODE_SHAPE)
         self.assertIsNotNone(h)
+        self.assertIsInstance(h, Figure)
         self.assertIsNotNone(h_mass_elastic)
         self.assertIsNotNone(ss_rotor)
         self.assertTrue(len(omega_cpm) > 0)
@@ -134,6 +139,7 @@ class CalcForcedTorsRespTests(unittest.TestCase):
 
         self.assertLess(abs(float(d_eigvec[0, 0]) - 1.0), self.ABS_TOL_MODE_SHAPE)
         self.assertIsNotNone(h)
+        self.assertIsInstance(h, Figure)
         self.assertIsNotNone(h_mass_elastic)
         self.assertIsNotNone(ss_rotor)
         self.assertTrue(len(omega_cpm) > 0)
