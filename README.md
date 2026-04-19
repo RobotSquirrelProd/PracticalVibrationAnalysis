@@ -8,9 +8,9 @@ Computation tools for looking at real-world signals for [applied vibration analy
 
 As of this writing, the package is a work-in-progress and heavily in development. Structure and syntax will likely change prior to a formal release.
 
-If you do scare up the courage to install this and try commands, I would love your feedback, please log issues and concerns here in the GitHub repository.
+If you do scare up the courage to install this and try it, I would love your feedback, please log issues and concerns here in the GitHub repository.
 
-## Repository layout
+## Repository Layout
 
 - `python/vibration_analysis/`: Maintained Python package source.
 - `python/tests/`: Primary automated test suite.
@@ -20,6 +20,11 @@ If you do scare up the courage to install this and try commands, I would love yo
 - `scripts/`: Local helper scripts and launchers.
 - `docs/architecture/`: Architecture and UML artifacts.
 - `docs/figures/`: Generated figures and plot exports.
+
+## Python Torsional Vibration Analysis
+The repository includes python code for free-free and forced torsional vibration analysis. As of Apr 2026 I am still porting over the functions from MATLAB. I have a hello world notebook with examples in the root of the repository:
+
+`ForcedTorsionalResponse_HelloWorld.ipynb`
 
 ## Python Vibration Analysis Library
 This section describes how to install and use the library for applied vibration analysis
