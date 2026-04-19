@@ -21,7 +21,10 @@ If you do scare up the courage to install this and try commands, I would love yo
 - `docs/architecture/`: Architecture and UML artifacts.
 - `docs/figures/`: Generated figures and plot exports.
 
-## Installation
+## Python Vibration Analysis Library
+This section describes how to install and use the library for applied vibration analysis
+
+### Installation
 
 In this early stage I clone the repository to a local folder and then:
 
@@ -41,11 +44,11 @@ In this early stage I clone the repository to a local folder and then:
 
 I verified these instructions in Windows 11, but it should be similar for other operating systems.
 
-## Quick Examples
+### Quick Examples
 
 This section has some examples to get you startedd.
 
-### Timebase plot
+#### Timebase plot
 
 A timebase plot shows an amplitude versus time waveform in a rectangular grid for one data series. This plot format can be thought of as a high-resolution trend with 1000s of points over a few hundred milliseconds. 
 
